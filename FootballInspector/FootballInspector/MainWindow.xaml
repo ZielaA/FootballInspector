@@ -10,23 +10,64 @@
     <Grid>
         <TabControl>
             <TabItem Header="Clubs">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal">
-                        <ComboBox Width="130" Height="30" ItemsSource="{Binding Leagues}" SelectedItem="{Binding SelectedLeague}">
+                <StackPanel Name="MainStackPanel" Orientation="Horizontal">
+                    <StackPanel Name="LeftHalfStackPanel" Orientation="Vertical">
+                        <ComboBox ItemsSource="{Binding Leagues}" SelectedItem="{Binding SelectedLeague}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding OnSelectedLeagueChangedCmd}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-
-                         </ComboBox>
-                        <Button Content="Refresh" Width="80" Margin="10 0 0 0" Command="{Binding OnSelectedLeagueChangedCmd}"/>
-                        <Label Content="{Binding SelectedLeague}"/>
+                        </ComboBox>
+                        <ListView ItemsSource="{Binding Clubs}">
+                        </ListView>
                     </StackPanel>
-                    <ListView ItemsSource="{Binding Clubs}">
-                
-            </ListView>
-        </StackPanel>
+                    <StackPanel Name="RightHalfStackPanel" Orientation="Vertical">
+                        <StackPanel Name="BasicInfoPanel"  Orientation="Horizontal" Margin="0 0 0 20">
+                            <Image Source="E:\FootballInspector\FootballInspector\FootballInspector\FootballInspector\Images\QuestionMark2.png"/>
+                            <StackPanel Name="NameAndleaguePanel" Orientation="Vertical" Margin="20 0 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Name: "/>
+                                    <Label Content="Tmp"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="League: "/>
+                                    <Label Content="Tmp"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Name="PointsPanel"  Orientation="Horizontal">
+                            <Label Content="Points: "/>
+                            <Label Content="Tmp"/>
+                        </StackPanel>
+                        <StackPanel Name="WinsPanel"  Orientation="Horizontal">
+                            <Label Content="Wins: "/>
+                            <Label Content="Tmp"/>
+                        </StackPanel>
+                        <StackPanel Name="DrawsPanel"  Orientation="Horizontal">
+                            <Label Content="Draws: "/>
+                            <Label Content="Tmp"/>
+                        </StackPanel>
+                        <StackPanel Name="DefeatsPanel"  Orientation="Horizontal">
+                            <Label Content="Defeats: "/>
+                            <Label Content="Tmp"/>
+                        </StackPanel>
+                        <StackPanel Name="ScoredGoalsPanel"  Orientation="Horizontal">
+                            <Label Content="Scored goals: "/>
+                            <Label Content="Tmp"/>
+                        </StackPanel>
+                        <StackPanel Name="LostGoalsPanel"  Orientation="Horizontal">
+                            <Label Content="lost goals: "/>
+                            <Label Content="Tmp"/>
+                        </StackPanel>
+                        <StackPanel Name="GoalsDiffrencePanel"  Orientation="Horizontal">
+                            <Label Content="Goal difference: "/>
+                            <Label Content="Tmp"/>
+                        </StackPanel>
+                    </StackPanel>
+
+
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>
