@@ -57,6 +57,19 @@ namespace FootballInspector.ViewModel
         }
         readonly public string InitiatedLeague;
 
+        private Clubs selectedClub;
+        public Clubs SelectedClub
+        {
+            get
+            {
+                return selectedClub;
+            }
+            set
+            {
+                Set(() => SelectedClub, ref selectedClub, value);
+            }
+        }
+
     
 
         public ICommand OnSelectedLeagueChangedCmd { get; set; }
@@ -68,6 +81,7 @@ namespace FootballInspector.ViewModel
             {
                 foreach(var x in db.Clubs)
                 {
+                    x.GoalDifference = x.ScoredGoals - x.LostGoals;
                     allClubs.Add(x);
                 }
             }
@@ -76,9 +90,12 @@ namespace FootballInspector.ViewModel
             Leagues.Add("La Liga");
             Leagues.Add("Barclays Premier League");
             Leagues.Add("Bundesliga");
+            Leagues.Add("Inna");
             InitiatedLeague = Leagues.First();
+            SelectedLeague = InitiatedLeague;
             clubs = new ObservableCollection<Clubs>(allClubs);
             OnSelectedLeagueChangedCmd = new RelayCommand(OnSelectedLeagueChanged);
+            SelectedClub = clubs.First();
         }
 
         private void OnSelectedLeagueChanged()
@@ -93,7 +110,19 @@ namespace FootballInspector.ViewModel
                 var ctemplist = from c in allClubs where c.League == SelectedLeague select c;
                 Clubs = new ObservableCollection<Model.Clubs>(ctemplist.ToList());
             }
+
+            if (Clubs.Any())
+            {
+                SelectedClub = clubs.First();
+            }
+            else
+            {
+                SelectedClub = null;
+            }
      
         }
+
+
+
     }
 }

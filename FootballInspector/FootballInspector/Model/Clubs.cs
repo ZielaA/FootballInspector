@@ -23,19 +23,8 @@ namespace FootballInspector.Model
         public int Defeats { get; set; }
         public int ScoredGoals { get; set; }
         public int LostGoals { get; set; }
+        public int GoalDifference { get; set; }
 
-        //public Clubs(string name, string league)
-        //{
-        //    Id = 100;
-        //    Name = name;
-        //    League = league;
-        //    Points = 0;
-        //    Wins = 0;
-        //    Draws = 0;
-        //    Defeats = 0;
-        //    ScoredGoals = 0;
-        //    LostGoals = 0;
-        //}
 
         public override string ToString()
         {
